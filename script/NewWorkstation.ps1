@@ -54,7 +54,24 @@ foreach ($scoopBucket in $ScoopBucketsToAdd) {
     scoop bucket add $scoopBucket
 }
 
-scoop install aria2,git
+$ScoopAppsToInstall = @(
+"7zip"
+"aria2"
+"azuredatastudio"
+"concfg"
+"discord"
+"ffmpeg "
+"firefox"
+"git"
+"mpc-hc-fork"
+"mpc-qt"
+"openssh"
+"pwsh"
+"windirstat"
+"youtube-dl"
+"pwsh-beta"
+)
+scoop install $ScoopAppsToInstall
 
 
 # Install and update PowerShell modules
@@ -73,3 +90,4 @@ Install-Module PSWindowsUpdate -Force -Confirm:$false
 ## You will need to register to use the Microsoft Update Service not just the default Windows Update Service.
 Add-WUServiceManager -ServiceID "7971f918-a847-4430-9279-4a52d1efe18d" -Confirm:$false
 Get-WUInstall -MicrosoftUpdate -AcceptAll -AutoReboot -Install -Verbose
+

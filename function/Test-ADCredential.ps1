@@ -43,12 +43,12 @@ function Test-ADCredential
     Process
     {
         try {
-            $User = $Credential.GetNetworkCredential().UserName
+            $UserName = $Credential.GetNetworkCredential().UserName
             $Password = $Credential.GetNetworkCredential().Password
 
             Add-Type -AssemblyName System.DirectoryServices.AccountManagement
             $ds = New-Object System.DirectoryServices.AccountManagement.PrincipalContext('domain')
-            $ds.ValidateCredentials($user, $Password)
+            $ds.ValidateCredentials($UserName, $Password)
         }
         catch {
                 $PSCmdlet.ThrowTerminatingError($PSitem)

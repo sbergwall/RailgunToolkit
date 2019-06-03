@@ -1,24 +1,15 @@
 <#
 .Synopsis
-   Short description
+   Create a PS session to a Exchange Server and import the Exchange cmdlets.
 .DESCRIPTION
-   Long description
+   Create a PS session to a Exchange Server and import the Exchange cmdlets.
 .EXAMPLE
-   Example of how to use this cmdlet
+   Connect-ExchangeServer -ExchangeServer EX01 -Credential (Get-Credential)
 .EXAMPLE
-   Another example of how to use this cmdlet
-.INPUTS
-   Inputs to this cmdlet (if any)
-.OUTPUTS
-   Output from this cmdlet (if any)
+   $Cred = Get-Credentia
+   Connect-ExchangeServer -ExchangeServer EX01 -Credential $cred
 .NOTES
    General notes
-.COMPONENT
-   The component this cmdlet belongs to
-.ROLE
-   The role this cmdlet belongs to
-.FUNCTIONALITY
-   The functionality that best describes this cmdlet
 #>
 function Connect-ExchangeServer {
     [CmdletBinding(ConfirmImpact = 'None')]
@@ -35,8 +26,7 @@ function Connect-ExchangeServer {
         $ExchangeServer,
 
         # Param3 help description
-        [Parameter(Mandatory = $true,
-        ValueFromPipelineByPropertyName = $true,
+        [Parameter(ValueFromPipelineByPropertyName = $true,
         Position = 1)]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
@@ -49,7 +39,7 @@ function Connect-ExchangeServer {
     }
     Process {
         try {
-            $ExSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "http://$ExchangeServer/PowerShell/" -Authentication Kerberos -Credential $Credential
+            $ExSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "http://$ExchangeServer/PowerShell/" -Authentication Kerberos -Credential $Credential -ErrorAction Stop
             Import-PSSession (Import-PSSession $ExSession -AllowClobber) -Global
         }
         catch {

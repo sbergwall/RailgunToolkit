@@ -55,6 +55,7 @@ function Get-DotNetFrameworkVersion {
                         461310 { $NetFrameworkVersion = "4.7.1" }
                         461808 { $NetFrameworkVersion = "4.7.2" }
                         461814 { $NetFrameworkVersion = "4.7.2" }
+                        528040 { $NetFrameworkVersion = '4.8 or later'}
                         Default { $NetFrameworkVersion = "Net Framework 4.5 or later is not installed." }
                     }
                     $Object = [PSCustomObject]@{

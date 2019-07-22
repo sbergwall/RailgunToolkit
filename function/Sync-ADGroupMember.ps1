@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
    Sync AD Group members from Target to Source by using DistinguishedName property
 .DESCRIPTION
@@ -25,7 +25,7 @@ function Sync-ADGroupMember {
 
         # Param2 help description
         [Parameter(Mandatory = $true,
-            Position = 1)]        
+            Position = 1)]
         $Target
     )
 
@@ -34,15 +34,16 @@ function Sync-ADGroupMember {
         $searcher = [adsisearcher]$domain
         $searcher.PageSize = 1000000
         $searcher.PropertiesToLoad.Add('SamAccountName') | Out-
-        
+
         Foreach ($SourceGroup in $Source) {
-        Try {
-            Get-ADGroup -Identity $SourceGroup 
-        } Catch {
-            $_
-            BREAK
+            Try {
+                Get-ADGroup -Identity $SourceGroup
+            }
+            Catch {
+                $_
+                BREAK
+            }
         }
-    }
 
     }
     Process {
@@ -59,7 +60,7 @@ function Sync-ADGroupMember {
                 #Write "Add $($_.Properties['SamAccountName']) to $Target"
             }
         }
-        
+
 
         [String]$SearchStringRemove = $Null
         Foreach ($SourceStringRemove in $Source) {

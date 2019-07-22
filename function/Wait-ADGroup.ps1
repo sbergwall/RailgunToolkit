@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
    Short description
 .DESCRIPTION
@@ -62,7 +62,7 @@ function Wait-ADGroup {
                 If ($i -eq $Retry) {
                     $Continue = $true
                 }
-            } 
+            }
             catch {
                 $PSCmdlet.ThrowTerminatingError($PSitem)
                 $Continue = $true

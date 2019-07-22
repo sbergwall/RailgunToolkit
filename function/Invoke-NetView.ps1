@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
    Invoke Net.exe with View
 .DESCRIPTION
@@ -15,7 +15,7 @@
    $shares  | select -expand Item
 .NOTES
    This function is from a answer on superuser.com (https://superuser.com/questions/769679/powershell-get-list-of-folders-shared).
-   It will invoke net.exe with View on the servers you have specified. 
+   It will invoke net.exe with View on the servers you have specified.
 #>
 
 function Invoke-NetView {
@@ -30,7 +30,7 @@ function Invoke-NetView {
 
         [Parameter(Mandatory = $false)]
         [string[]]$ColumnHeadings = @('Share name', 'Type', 'Used as', 'Comment'), #I suspect these differ depending on OS language?  Therefore made customisable
-        
+
         [Parameter(Mandatory = $false)]
         [string]$ShareName = 'Share name' #tell us which of the properties relates to the share name
         #,
@@ -82,11 +82,11 @@ function Invoke-NetView {
 
             [string]$headers = $output[4] #find the data's heading row
             $output = $output[7..($output.Length - 3)] #keep only the data rows
-            $Splitter | % { $_.Initialise($headers) }
+            $Splitter | ForEach-Object { $_.Initialise($headers) }
 
-            foreach ($line in $output) { 
+            foreach ($line in $output) {
                 [psobject]$result = new-object -TypeName PSObject -Property @{ComputerName = $ComputerName; }
-                $Splitter | % { $_.Process($result, $line) }
+                $Splitter | ForEach-Object { $_.Process($result, $line) }
                 $result | Add-Member '_ShareNameColumnName' -MemberType NoteProperty -Value $ShareName
                 $result | Add-Member 'Path' -MemberType ScriptProperty -Value { ("\\{0}\{1}" -f $this.ComputerName, $this."$($this._ShareNameColumnName)") }
                 $result | Add-Member 'Item' -MemberType ScriptProperty -Value { Get-Item ($this.Path) }

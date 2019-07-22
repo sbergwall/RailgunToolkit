@@ -1,3 +1,5 @@
+BREAK
+
 ([switch]$Elevated)
 function CheckAdmin {
     $currentUser = New-Object Security.Principal.WindowsPrincipal $([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -36,10 +38,10 @@ foreach ($Drive in $AllFileSystemDrives) {
 }
 
 # For example, the following command will uninstall all previous versions of components without the scheduled task’s 30-day grace period:
-DISM.exe /online /Cleanup-Image /StartComponentCleanup
+Dism.exe /online /Cleanup-Image /StartComponentCleanup
 
 #The following command will remove files needed for uninstallation of service packs. You won’t be able to uninstall any currently installed service packs after running this command:
-DISM.exe /online /Cleanup-Image /SPSuperseded
+Dism.exe /online /Cleanup-Image /SPSuperseded
 
 #The following command will remove all old versions of every component. You won’t be able to uninstall any currently installed service packs or updates after this completes:
-DISM.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase

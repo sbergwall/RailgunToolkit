@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
    Short description
 .DESCRIPTION
@@ -40,19 +40,21 @@ function Test-ADUser {
 
     Begin {
     }
+    
     Process {
         try {
-        $ADParams = $PSBoundParameters
+            $ADParams = $PSBoundParameters
             Get-aduser @ADParams -erroraction Stop
             $true
-        } 
+        }
         catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException] {
-             $false
+            $false
         }
         catch {
             $PSCmdlet.ThrowTerminatingError($PSItem)
         }
     }
+
     End {
     }
 }

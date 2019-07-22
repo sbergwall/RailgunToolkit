@@ -27,7 +27,7 @@ function Connect-ExchangeServer {
 
         # Param3 help description
         [Parameter(ValueFromPipelineByPropertyName = $true,
-        Position = 1)]
+            Position = 1)]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
         [System.Management.Automation.PSCredential]

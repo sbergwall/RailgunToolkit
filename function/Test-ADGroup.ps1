@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
    Short description
 .DESCRIPTION
@@ -42,12 +42,12 @@ function Test-ADGroup {
     }
     Process {
         try {
-        $ADParams = $PSBoundParameters
+            $ADParams = $PSBoundParameters
             Get-adgroup @ADParams -erroraction Stop
             $true
-        } 
+        }
         catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException] {
-             $false
+            $false
         }
         catch {
             $PSCmdlet.ThrowTerminatingError($PSItem)

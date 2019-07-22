@@ -1,0 +1,39 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "files.defaultLanguage": "powershell",
+    //"powershell.codeFormatting.pipelineIndentationStyle": "IncreaseIndentationAfterEveryPipeline",
+    "powershell.codeFormatting.WhitespaceInsideBrace": true,
+    "powershell.codeFormatting.WhitespaceAroundPipe": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+    "window.titleBarStyle": "custom",
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": 1,
+    "files.autoSave": "afterDelay",
+    "git.enableSmartCommit": true,
+    "workbench.colorTheme": "Night Wolf [dark gray]",
+    "workbench.sideBar.location": "right",
+    "explorer.confirmDelete": false,
+    "glassit.alpha": 235,
+    "terminal.integrated.shell.windows": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "shellLauncher.shells.windows": [
+        {
+            "shell": "c:\\Program Files\\PowerShell\\6\\pwsh.exe",
+            "label": "PowerShell Core"
+        },
+        {
+            "shell": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "label": "Windows PowerShell"
+        }
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "mssql.connections": [
+        {
+            "server": "localhost",
+            "database": "",
+            "authenticationType": "Integrated",
+            "profileName": "Simon",
+            "password": ""
+        }
+    ],
+    "workbench.tree.renderIndentGuides": "always"
+}

@@ -20,8 +20,7 @@
 .FUNCTIONALITY
    The functionality that best describes this cmdlet
 #>
-function Test-ADCredential
-{
+function Test-ADCredential {
     [CmdletBinding()]
 
     [OutputType([bool])]
@@ -29,7 +28,7 @@ function Test-ADCredential
     Param (
         # Credential to test
         [Parameter(ValueFromPipelineByPropertyName = $true,
-        Position = 0)]
+            Position = 0)]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
         [System.Management.Automation.PSCredential]
@@ -40,8 +39,7 @@ function Test-ADCredential
     Begin {
     }
 
-    Process
-    {
+    Process {
         try {
             $UserName = $Credential.GetNetworkCredential().UserName
             $Password = $Credential.GetNetworkCredential().Password
@@ -51,7 +49,7 @@ function Test-ADCredential
             $ds.ValidateCredentials($UserName, $Password)
         }
         catch {
-                $PSCmdlet.ThrowTerminatingError($PSitem)
+            $PSCmdlet.ThrowTerminatingError($PSitem)
         }
     }
 

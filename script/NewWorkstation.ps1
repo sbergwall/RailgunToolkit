@@ -55,21 +55,21 @@ foreach ($scoopBucket in $ScoopBucketsToAdd) {
 }
 
 $ScoopAppsToInstall = @(
-"7zip"
-"aria2"
-"azuredatastudio"
-"concfg"
-"discord"
-"ffmpeg "
-"firefox"
-"git"
-"mpc-hc-fork"
-"mpc-qt"
-"openssh"
-"pwsh"
-"windirstat"
-"youtube-dl"
-"pwsh-beta"
+    "7zip"
+    "aria2"
+    "azuredatastudio"
+    "concfg"
+    "discord"
+    "ffmpeg "
+    "firefox"
+    "git"
+    "mpc-hc-fork"
+    "mpc-qt"
+    "openssh"
+    "pwsh"
+    "windirstat"
+    "youtube-dl"
+    "pwsh-beta"
 )
 scoop install $ScoopAppsToInstall
 

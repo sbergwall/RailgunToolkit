@@ -1,4 +1,5 @@
-<#
+﻿function Wait-ADUser {
+    <#
 .Synopsis
    Short description
 .DESCRIPTION
@@ -20,7 +21,7 @@
 .FUNCTIONALITY
    The functionality that best describes this cmdlet
 #>
-function Wait-ADUser {
+
     [CmdletBinding(ConfirmImpact = 'None')]
 
     Param
@@ -62,7 +63,7 @@ function Wait-ADUser {
                 If ($i -eq $Retry) {
                     $Continue = $true
                 }
-            } 
+            }
             catch {
                 $PSCmdlet.ThrowTerminatingError($PSitem)
                 $Continue = $true

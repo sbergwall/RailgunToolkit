@@ -1,30 +1,30 @@
-function Get-DotNetFrameworkVersion {
+﻿function Get-DotNetFrameworkVersion {
     <#
  .SYNOPSIS
     Get Dot Net version. From version 4.5 to 4.7.1.
- 
+
  .DESCRIPTION
     Using PSSession and Invoke-Command to read the .Net registry key, and translate the key value to version.
 
  .PARAMETER Computer
     Name of computer you want to get version from.
- 
+
  .EXAMPLE
     PS C:\Windows\system32> Get-DotNetFrameworkVersion
     Computername        : NODE1
     NETFrameworkVersion : 4.6.2
     PSComputerName      : localhost
     RunspaceId          : 4a307912-c1c5-4066-b429-db1e2fb3d650
- 
+
  .LINK
     http://ilovepowershell.com/2017/02/19/what-is-your-net-framework-version-use-powershell-to-check/
  .LINK
-    https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed    
+    https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
 
  .NOTES
     General note
  #>
-   
+
     [CmdletBinding()]
     param (
         [string[]]$Computer = $env:COMPUTERNAME
@@ -35,7 +35,7 @@ function Get-DotNetFrameworkVersion {
     process {
         $ScriptBlockToRun = {
             try {
-                $NetRegKeys = Get-Childitem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full' -ErrorAction Stop
+                $NetRegKeys = Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full' -ErrorAction Stop
                 foreach ($NetRegKey in $NetRegKeys) {
                     $Release = $NetRegKey.GetValue("Release")
                     Switch ($Release) {
@@ -55,7 +55,8 @@ function Get-DotNetFrameworkVersion {
                         461310 { $NetFrameworkVersion = "4.7.1" }
                         461808 { $NetFrameworkVersion = "4.7.2" }
                         461814 { $NetFrameworkVersion = "4.7.2" }
-                        528040 { $NetFrameworkVersion = '4.8 or later'}
+                        528040 { $NetFrameworkVersion = '4.8 or later' }
+                        528049 { $NetFrameworkVersion = '4.8 or later' }
                         Default { $NetFrameworkVersion = "Net Framework 4.5 or later is not installed." }
                     }
                     $Object = [PSCustomObject]@{

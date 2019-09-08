@@ -1,6 +1,6 @@
 New-UDPage -Name "DiskOverview" -Icon delicious -Content {
     New-UDRow {
-        New-UDColumn -size 8 -Endpoint {
+        New-UDColumn -SmallOffset 1 -SmallSize 10 -Endpoint {
             $Headers = @("PSComputerName", "DeviceID", "DriveType", "VolumeName", "SizeGB", "FreeSpaceGB")
             $Properties = @("PSComputerName", "DeviceID", "DriveType", "VolumeName", "SizeGB", "FreeSpaceGB")
             New-UDGrid -Title "Disk Overview" -Headers $Headers -Properties $Properties -Endpoint {

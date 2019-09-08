@@ -1,7 +1,7 @@
 $Theme = New-UDTheme -Name "Temp" -Definition @{
     '.ud-dashboard' = @{
         "BackgroundColor" = "rgb(243,243,243)"
-        #"font-style" = 'Calibri'
+        "font-style" = 'Calibri'
     }
     UDNavBar = @{
         "BackgroundColor" = "rgb(19,29,78)"
@@ -14,10 +14,12 @@ $Theme = New-UDTheme -Name "Temp" -Definition @{
     UDCard = @{
         BackgroundColor = 'White'
     }
-  
+
+    UDGrid = @{
+    }
   }
 
-$pages = gci "E:\Google Drive\Jobb\Script Library\UniversalDashboard\UDOverviewServer\pages" -File | ForEach-Object { & $_.FullName }
+$pages = gci "E:\Google Drive\Jobb\Script Library\Git Projects\RailgunToolkit\UDOverviewServer\pages" -File | ForEach-Object { & $_.FullName }
 
 $Navigation = New-UDSideNav -Content {
     New-UDSideNavItem -Text "Home" -Url "Home" -Icon docker

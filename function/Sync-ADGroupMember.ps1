@@ -40,7 +40,7 @@ function Sync-ADGroupMember {
                 Get-ADGroup -Identity $SourceGroup
             }
             Catch {
-                $_
+                $PSCmdlet.ThrowTerminatingError($psitem)
                 BREAK
             }
         }
@@ -57,7 +57,7 @@ function Sync-ADGroupMember {
         $searcher.FindAll() | ForEach-Object {
             if ($pscmdlet.ShouldProcess("$Target", "Add $($_.Properties['SamAccountName'])")) {
                 Add-ADGroupMember -Identity $Target -Members $($_.Properties['SamAccountName']) -ErrorAction Stop
-                #Write "Add $($_.Properties['SamAccountName']) to $Target"
+                Write-Verbose "Add $($_.Properties['SamAccountName']) to $Target"
             }
         }
 
@@ -72,7 +72,7 @@ function Sync-ADGroupMember {
         $searcher.FindAll() | ForEach-Object {
             if ($pscmdlet.ShouldProcess("$Target", "Removing $($_.Properties['SamAccountName'])")) {
                 Remove-ADGroupMember -Identity $Target -Members $($_.Properties['SamAccountName']) -ErrorAction Stop
-                #Write "Remove $($_.Properties['SamAccountName']) to $Target"
+                Write-Verbose "Remove $($_.Properties['SamAccountName']) to $Target"
             }
         }
     }

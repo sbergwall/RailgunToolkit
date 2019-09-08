@@ -2,24 +2,24 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 $ChocoPackages = @(
-    #"chocolatey"
-    #"chocolatey-core",
-    #"bginfo",
-    #"googledrive ",
-    #"rsat",
-    #"rdcman ",
-    #"powershell ",
-    #"powershell-core ",
-    #"vscode",
-    #"sql-server-management-studio",
-    #"vscode-powershell ",
-    #"git.install ",
-    #"git ",
-    #"vscode-mssql ",
-    #"vscode-gitlens ",
-    #"ConEmu ",
-    #'openssh -params "/SSHAgentFeature"',
-    #'openssh -params "/SSHServerFeature"'
+    "chocolatey"
+    "chocolatey-core",
+    "bginfo",
+    "googledrive ",
+    "rsat",
+    "rdcman ",
+    "powershell ",
+    "powershell-core ",
+    "vscode",
+    "sql-server-management-studio",
+    "vscode-powershell ",
+    "git.install ",
+    "git ",
+    "vscode-mssql ",
+    "vscode-gitlens ",
+    "ConEmu ",
+    'openssh -params "/SSHAgentFeature"',
+    'openssh -params "/SSHServerFeature"'
 )
 
 foreach ($ChocoPackage in $ChocoPackages) {
@@ -35,9 +35,14 @@ Find-Package -Source Chocolatey -Name $ChocoPackages | install-package -force -v
 ##Get-WindowsCapability -Online -Name RSAT.* | Add-WindowsCapability -Online
 
 # Or test Scoop
-Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
+Set-ExecutionPolicy 'RemoteSigned' -Scope Process -Force; Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
+
+scoop install 7zip
+scoop install aria2
+scoop install git
 $ScoopBucketsToAdd = @(
-    "Ash258"
+    "Ash258 [https://github.com/Ash258/scoop-Ash258.git]"
+    "jfut [https://github.com/jfut/scoop-jfut.git]"
     "extras",
     "games",
     "java",
@@ -55,21 +60,25 @@ foreach ($scoopBucket in $ScoopBucketsToAdd) {
 }
 
 $ScoopAppsToInstall = @(
-    "7zip"
-    "aria2"
-    "azuredatastudio"
-    "concfg"
-    "discord"
-    "ffmpeg "
+    #"azuredatastudio"
+    #"concfg"
+    #"discord"
+    #"ffmpeg "
     "firefox"
     "git"
-    "mpc-hc-fork"
-    "mpc-qt"
-    "openssh"
+    #"mpc-hc-fork"
+    #"mpc-qt"
+    #"openssh"
     "pwsh"
-    "windirstat"
-    "youtube-dl"
+    #"windirstat"
+    #"youtube-dl"
     "pwsh-beta"
+    "everything"
+    #"bginfo"
+    #"rsat"
+    "rdcman"
+    "vscode"
+    #"sql-server-management-studio"
 )
 scoop install $ScoopAppsToInstall
 

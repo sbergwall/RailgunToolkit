@@ -54,7 +54,9 @@
         $ADParams.Remove('Wait') | Out-Null
         Do {
             try {
-                Get-ADUser @ADParams -errorAction stop
+                Get-ADUser @ADParams -errorAction stop | Out-Null
+                $Continue = $true
+
             }
             catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException] {
                 $i++

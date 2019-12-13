@@ -20,7 +20,7 @@ $ChocoPackages = @(
     'openssh -params "/SSHAgentFeature"'
 )
 
-$ChocoPackagesWs = @{
+$ChocoPackagesWs = @(
     "microsoft-windows-terminal",
     "googledrive ",
     "powershell ",
@@ -35,7 +35,7 @@ $ChocoPackagesWs = @{
     "passwordSafe",
     "microsoft-edge-insider",
     "docker-desktop"
-}
+)
 
 foreach ($ChocoPackage in $ChocoPackages) {
     choco.exe install $ChocoPackage -y

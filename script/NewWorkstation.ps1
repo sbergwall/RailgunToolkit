@@ -17,10 +17,25 @@ $ChocoPackages = @(
     "git ",
     "vscode-mssql ",
     "vscode-gitlens ",
-    "ConEmu ",
-    'openssh -params "/SSHAgentFeature"',
-    'openssh -params "/SSHServerFeature"'
+    'openssh -params "/SSHAgentFeature"'
 )
+
+$ChocoPackagesWs = @{
+    "microsoft-windows-terminal",
+    "googledrive ",
+    "powershell ",
+    "powershell-core ",
+    "vscode",
+    "vscode-powershell ",
+    "git ",
+    "steam",
+    "goggalaxy",
+    "spotify",
+    "veeam-agent",
+    "passwordSafe",
+    "microsoft-edge-insider",
+    "docker-desktop"
+}
 
 foreach ($ChocoPackage in $ChocoPackages) {
     choco.exe install $ChocoPackage -y

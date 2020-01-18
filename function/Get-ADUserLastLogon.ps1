@@ -11,11 +11,12 @@ function Get-ADUserLastLogon {
 
         [Parameter(Position = 1)]
         [ValidateNotNullOrEmpty()]
+        [ArgumentCompleter( { @("mail") })]
         [String[]]$Property,
 
         [Parameter(Position = 2)]
         [ValidateNotNullOrEmpty()]
-        [String[]]$Filter
+        [String]$Filter
     )
 
     begin {
@@ -31,11 +32,9 @@ function Get-ADUserLastLogon {
         If (-not($PSBoundParameters.ContainsKey('SamAccountName'))) {
             try {
                 Write-Verbose "[BEGIN  ] No SamAccountName was specified, getting all AD user accounts in domain"
-                $adSplat = @{
-                    Filter      = If ($Filter) { $Filter } else { "*" }
-                    Property    = If ($Property) { $Property } else { "*" }
-                    ErrorAction = "Stop"
-                }
+                $adSplat = @{ErrorAction = "Stop" }
+                If (-not($null -eq $Filter)) { $adSplat.Filter = $filter }
+                If (-not($null -eq $Property)) { $adSplat.Property = $filter }
 
                 $SamAccountName = Get-ADUser @adSplat
             } 
@@ -55,9 +54,7 @@ function Get-ADUserLastLogon {
                             ErrorAction = "Stop"
                            
                         }
-                        If (-not($null -eq $Property)) {
-                            $Splatting.Properties = $Property
-                        }
+                        If (-not($null -eq $Property)) { $Splatting.Properties = $Property }
 
                         $user = Get-ADUser @Splatting
                     }

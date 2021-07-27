@@ -16,7 +16,7 @@ function Connect-ExchangeServer {
 
     Param
     (
-        # Param1 help description
+        # Name of the Exchange Server you want to connect to
         [Parameter(Mandatory = $true,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
@@ -25,21 +25,27 @@ function Connect-ExchangeServer {
         [ValidateNotNullOrEmpty()]
         $ExchangeServer,
 
-        # Param3 help description
+        # Your credentials
         [Parameter(ValueFromPipelineByPropertyName = $true,
             Position = 1)]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
         [System.Management.Automation.PSCredential]
         [System.Management.Automation.Credential()]
-        $Credential = [System.Management.Automation.PSCredential]::Empty
+        $Credential = [System.Management.Automation.PSCredential]::Empty,
+
+        # Authentication Mechanism
+        [ValidateNotNull()]
+        [ValidateNotNullOrEmpty()]
+        [System.Management.Automation.Runspaces.AuthenticationMechanism] 
+        $Authentication = [System.Management.Automation.Runspaces.AuthenticationMechanism]::Kerberos
     )
 
     Begin {
     }
     Process {
         try {
-            $ExSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "http://$ExchangeServer/PowerShell/" -Authentication Kerberos -Credential $Credential -ErrorAction Stop
+            $ExSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "http://$ExchangeServer/PowerShell/" -Authentication $Authentication -Credential $Credential -ErrorAction Stop
             Import-PSSession (Import-PSSession $ExSession -AllowClobber) -Global
         }
         catch {
